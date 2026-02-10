@@ -32,7 +32,8 @@ GAWK_CONF_OPTS += --without-readline
 endif
 
 HOST_GAWK_CONF_OPTS = --without-readline --without-mpfr
-HOST_GAWK_CONF_ENV += CFLAGS="$(HOST_CFLAGS) -std=gnu99 -Wno-error"
+HOST_GAWK_CONF_ENV += CFLAGS="$(HOST_CFLAGS) -std=gnu99"
+
 define GAWK_CREATE_SYMLINK
 	ln -sf gawk $(TARGET_DIR)/usr/bin/awk
 endef
