@@ -1,0 +1,24 @@
+name: Build
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y wget unzip build-essential git bc swig \
+            libncurses-dev libpython3-dev libssl-dev mtd-utils \
+            fakeroot sudo cpio rsync cmake curl file
+
+      - name: Configure Buildroot
+        run: make rhodesisland_epass_defconfig
+
+      - name: Build
+        run: make
